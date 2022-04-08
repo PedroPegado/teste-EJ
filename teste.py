@@ -1,5 +1,7 @@
-import requests
+from playwright.sync_api import sync_playwright
 
-response = requests.get('https://www.uol.com.br')
-print(response.json())
+with sync_playwright() as p:
+    nav = p.chromium.launch(headless=False)
+    page = nav.new_page
+    page.goto('http://google.com.br')
 
